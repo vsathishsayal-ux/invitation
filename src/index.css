@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-script: 'Great Vibes', 'Alex Brush', cursive;
+    --font-serif-heading: 'Cinzel Decorative', 'Cinzel', serif;
+    --font-serif-body: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Outfit', 'Montserrat', sans-serif;
+
+    --color-maroon: #4A0E17;
+    --color-maroon-dark: #32070D;
+    --color-gold: #D4AF37;
+    --color-gold-light: #F3E5AB;
+    --color-gold-dark: #AA820A;
+    --color-cream: #FAF6F0;
+    --color-paper: #FDFBF7;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-cream);
+    color: #2D231E;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Font Utilities */
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-serif-heading {
+  font-family: var(--font-serif-heading);
+}
+
+.font-serif-body {
+  font-family: var(--font-serif-body);
+}
+
+.font-sans-clean {
+  font-family: var(--font-sans);
+}
+
+/* Gold Foil Text & Metallic Gradient */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shine 6s linear infinite;
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #aa771c) 1;
+}
+
+.gold-bg-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa820a 100%);
+}
+
+.maroon-bg-gradient {
+  background: linear-gradient(145deg, #5c121e 0%, #3a0910 100%);
+}
+
+/* Shimmer Animation */
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Royal Paper Texture overlay */
+.paper-texture {
+  background-color: #fdfbf7;
+  background-image: radial-gradient(#d4af37 0.4px, transparent 0.4px), radial-gradient(#4a0e17 0.4px, #fdfbf7 0.4px);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+  background-opacity: 0.03;
+}
+
+.envelope-shadow {
+  box-shadow: 
+    0 20px 40px -15px rgba(74, 14, 23, 0.25),
+    0 0 80px 0 rgba(212, 175, 55, 0.15),
+    inset 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.card-shadow {
+  box-shadow: 
+    0 15px 35px -10px rgba(0, 0, 0, 0.12),
+    0 5px 15px -5px rgba(74, 14, 23, 0.08);
+}
+
+/* Floating animation for subtle background items */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), 0 0 30px rgba(74, 14, 23, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.8), 0 0 45px rgba(74, 14, 23, 0.4);
+    transform: scale(1.03);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #faf6f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a059;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4a0e17;
+}
+
+/* Indian Traditional Mandala / Kolam SVGs & Pattern Helpers */
+.mandala-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L33 12L42 3L39 15L51 12L45 22L57 24L48 30L57 36L45 38L51 48L39 45L42 57L33 48L30 60L27 48L18 57L21 45L9 48L15 38L3 36L12 30L3 24L15 22L9 12L21 15L18 3L27 12z' fill='%23c5a059' fill-opacity='0.05'/%3E%3C/svg%3E");
+}
