@@ -37,15 +37,15 @@ export default function Events({ events }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="bg-[#fdfbf7] rounded-2xl border-2 border-[#d4af37]/40 card-shadow p-6 flex flex-col justify-between hover:border-[#d4af37] transition group relative overflow-hidden"
+              className="bg-[#fdfbf7] rounded-3xl border-2 border-[#d4af37]/45 card-shadow p-6 flex flex-col justify-between hover:border-[#d4af37] transition group relative overflow-hidden"
             >
               {/* Top Accent line */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 maroon-bg-gradient" />
+              <div className="absolute top-0 left-0 right-0 h-1.5 maroon-bg-gradient z-10" />
 
               <div>
                 {/* Event Icon & Title Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full maroon-bg-gradient text-[#fcf6ba] flex items-center justify-center border border-[#d4af37] shadow-sm">
+                  <div className="w-10 h-10 rounded-full maroon-bg-gradient text-[#fcf6ba] flex items-center justify-center border border-[#d4af37] shadow-sm shrink-0">
                     <IconComponent className="w-5 h-5 text-[#d4af37]" />
                   </div>
                   <h3 className="font-serif-heading font-bold text-xl text-[#4a0e17] group-hover:text-[#aa771c] transition">
@@ -59,7 +59,7 @@ export default function Events({ events }) {
 
                 {/* Details List */}
                 <div className="space-y-3 text-xs font-sans-clean">
-                  <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-lg border border-[#d4af37]/20">
+                  <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-xl border border-[#d4af37]/25">
                     <Clock className="w-4 h-4 text-[#aa771c] shrink-0 mt-0.5" />
                     <div>
                       <span className="font-bold block text-[#4a0e17]">{evt.date}</span>
@@ -67,7 +67,7 @@ export default function Events({ events }) {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-lg border border-[#d4af37]/20">
+                  <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-xl border border-[#d4af37]/25">
                     <MapPin className="w-4 h-4 text-[#aa771c] shrink-0 mt-0.5" />
                     <div>
                       <span className="font-semibold text-[#4a0e17] block">Venue</span>
@@ -76,7 +76,7 @@ export default function Events({ events }) {
                   </div>
 
                   {evt.attire && (
-                    <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-lg border border-[#d4af37]/20">
+                    <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-xl border border-[#d4af37]/25">
                       <Shirt className="w-4 h-4 text-[#aa771c] shrink-0 mt-0.5" />
                       <div>
                         <span className="font-semibold text-[#4a0e17] block">Suggested Attire</span>

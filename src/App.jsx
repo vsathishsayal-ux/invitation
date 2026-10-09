@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { initialWeddingData } from './data/weddingData';
 import BackgroundPetals from './components/BackgroundPetals';
+import FloatingBalloons from './components/FloatingBalloons';
 import InvitationOpening from './components/InvitationOpening';
 import HeaderControls from './components/HeaderControls';
 import WeddingHero from './components/WeddingHero';
@@ -20,7 +21,15 @@ export default function App() {
   const [weddingData, setWeddingData] = useState(() => {
     try {
       const saved = localStorage.getItem('wedding_invitation_data');
-      return saved ? JSON.parse(saved) : initialWeddingData;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (!parsed.musicUrl || parsed.musicUrl.includes('/audio/romantic-tamil-melody')) {
+          parsed.musicUrl = 'https://assets.einvitation.site/songs/Muzumathi-(Instrumental).mp3';
+          parsed.musicTitle = 'Muzumathi (Instrumental)';
+        }
+        return parsed;
+      }
+      return initialWeddingData;
     } catch (e) {
       return initialWeddingData;
     }
@@ -35,16 +44,21 @@ export default function App() {
     const nextState = forcePlay !== null ? forcePlay : !isMusicPlaying;
     setIsMusicPlaying(nextState);
     if (nextState) {
-      startAmbientWeddingMusic();
+      startAmbientWeddingMusic(weddingData.musicUrl || 'https://assets.einvitation.site/songs/Muzumathi-(Instrumental).mp3');
     } else {
       stopAmbientWeddingMusic();
     }
   };
 
-  // Called when ribbon untie animation completes
+  // Called after wax seal opening animation completes and invitation opens
   const handleOpenComplete = () => {
     setIsOpeningScreenVisible(false);
     playChimeSound();
+    
+    // Automatically play romantic background music AFTER opening the invitation
+    if (!isMusicPlaying) {
+      handleToggleMusic(true);
+    }
   };
 
   // Re-open envelope animation
@@ -64,10 +78,13 @@ export default function App() {
   return (
     <div className="relative min-h-screen paper-texture selection:bg-[#c5a059]/40 selection:text-[#4a0e17]">
       
-      {/* Floating flower petals ambient background */}
-      <BackgroundPetals count={20} />
+      {/* Photorealistic falling rose & jasmine flower petals */}
+      <BackgroundPetals count={22} />
 
-      {/* STEP 1 & STEP 2: Physical Envelope & Ribbon Opening Animation Overlay */}
+      {/* Elegant floating champagne, ivory, blush pink & muted gold balloons along screen edges */}
+      <FloatingBalloons count={6} />
+
+      {/* Physical Envelope & Ribbon Opening Animation Overlay */}
       {isOpeningScreenVisible && (
         <InvitationOpening
           weddingData={weddingData}
@@ -88,6 +105,7 @@ export default function App() {
           toggleMusic={() => handleToggleMusic()}
           onReopenEnvelope={handleReopenEnvelope}
           onOpenEditModal={() => setIsEditModalOpen(true)}
+          musicTitle={weddingData.musicTitle}
         />
 
         {/* SECTION 1 — WELCOME & HERO */}

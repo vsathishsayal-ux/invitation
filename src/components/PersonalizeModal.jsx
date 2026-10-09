@@ -152,6 +152,39 @@ export default function PersonalizeModal({ isOpen, onClose, currentData, onSave 
               </div>
             </div>
 
+            {/* Background Music Configuration */}
+            <div className="bg-[#faf6f0] p-4 rounded-xl border border-[#d4af37]/40 space-y-3">
+              <h4 className="font-bold text-[#4a0e17] text-xs uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
+                Background Romantic Music Settings
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-gray-700 font-semibold text-xs mb-1">Music Track Title</label>
+                  <input
+                    type="text"
+                    value={formData.musicTitle || ''}
+                    onChange={(e) => handleChange('musicTitle', e.target.value)}
+                    placeholder="Romantic Tamil Instrumental"
+                    className="w-full px-3 py-1.5 rounded-lg border border-gray-300 focus:border-[#4a0e17] focus:outline-none text-xs"
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 font-semibold text-xs mb-1">Audio Source URL (MP3/WAV)</label>
+                  <input
+                    type="text"
+                    value={formData.musicUrl || ''}
+                    onChange={(e) => handleChange('musicUrl', e.target.value)}
+                    placeholder="/audio/romantic-tamil-melody.wav"
+                    className="w-full px-3 py-1.5 rounded-lg border border-gray-300 focus:border-[#4a0e17] focus:outline-none text-xs"
+                  />
+                </div>
+              </div>
+              <p className="text-[11px] text-gray-500 italic">
+                Website owners can replace the file at <code className="text-[#aa771c]">public/audio/romantic-tamil-melody.wav</code> or enter any licensed song URL.
+              </p>
+            </div>
+
             {/* Footer buttons */}
             <div className="pt-4 border-t border-gray-200 flex items-center justify-between gap-3">
               <button
