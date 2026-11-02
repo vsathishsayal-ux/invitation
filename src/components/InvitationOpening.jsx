@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Sparkles, Heart, Music, VolumeX, MailOpen } from 'lucide-react';
+import { Sparkles, Heart, MailOpen } from 'lucide-react';
 import BackgroundPetals from './BackgroundPetals';
 import FloatingBalloons from './FloatingBalloons';
 
@@ -82,23 +82,7 @@ export default function InvitationOpening({ weddingData, onOpenComplete, isMusic
         {/* Tasteful Floating Balloons along screen edges */}
         <FloatingBalloons count={6} zIndex="z-30" />
 
-        {/* Music toggle control pill on top right */}
-        <button
-          onClick={() => toggleMusic && toggleMusic()}
-          className="absolute top-5 right-5 z-50 flex items-center gap-2 bg-[#ffffff]/15 hover:bg-[#ffffff]/25 backdrop-blur-md border border-[#d4af37]/60 text-[#f3e5ab] px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-xl cursor-pointer hover:scale-105"
-        >
-          {isMusicPlaying ? (
-            <>
-              <Music className="w-4 h-4 text-[#d4af37] animate-bounce" />
-              <span className="tracking-wide">Music Playing</span>
-            </>
-          ) : (
-            <>
-              <VolumeX className="w-4 h-4 text-gray-300" />
-              <span className="tracking-wide">Music Off</span>
-            </>
-          )}
-        </button>
+        {/* Music icon removed as requested */}
 
         {/* Outer 3D Envelope Container Wrapper */}
         <div className="relative w-full max-w-[460px] sm:max-w-[520px] mx-auto flex flex-col items-center justify-center z-20 perspective-[1400px]">

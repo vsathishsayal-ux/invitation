@@ -1,13 +1,13 @@
 export const initialWeddingData = {
-  brideName: "Bride Name",
-  brideFirstName: "Bride",
-  groomName: "Groom Name",
-  groomFirstName: "Groom",
-  hashtag: "#BrideWedsGroom",
+  brideName: "Bridha",
+  brideFirstName: "Bridha",
+  groomName: "Sathish",
+  groomFirstName: "Sathish",
+  hashtag: "#SathishWedsBridha",
 
-  weddingDate: "2026-12-15T10:30:00",
-  displayDate: "Sunday, 15 December 2026",
-  weddingTime: "10:30 AM onwards",
+  weddingDate: "2026-11-11T09:00:00",
+  displayDate: "Wednesday, 11 November 2026",
+  weddingTime: "9:00 AM to 10:30 AM",
   muhurthamTime: "09:00 AM - 10:30 AM",
 
   musicTitle: "Muzumathi (Instrumental)",
@@ -17,52 +17,42 @@ export const initialWeddingData = {
   invitationMessage: "With the blessings of our parents and loved ones, we joyfully invite you to be a part of our special day as we begin our journey together in love, joy, and togetherness.",
   blessingsText: "Your presence and blessings mean the world to us.",
 
-  brideParents: "Bride's Parents Name",
-  groomParents: "Groom's Parents Name",
+  brideParents: "Velmurugan & Shanmugathai",
+  groomParents: "Nagaraj & Nagavali",
   grandParents: "With the blessings of Family Elders & Ancestors",
 
-  venueName: "Sri Wedding Hall",
-  venueAddress: "Chennai, Tamil Nadu",
-  venueLandmark: "Near Main City Landmark, Chennai",
-  mapsUrl: "https://maps.google.com/?q=Chennai+Tamil+Nadu",
-  embedMapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.852899450346!2d80.2707!3d13.0827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+  venueName: "Murugan Kovil",
+  venueAddress: "Sayalgudi",
+  venueLandmark: "Murugan Kovil, Sayalgudi",
+  mapsUrl: "https://maps.google.com/?q=Sayalgudi+Tamil+Nadu",
+  embedMapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.5!2d78.4833!3d9.4667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06d7b5e1e00001%3A0x1234567890abcdef!2sSayalgudi%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
 
   bridePhone: "+91 98765 43210",
   groomPhone: "+91 98765 43211",
   rsvpWhatsapp: "+919876543210",
-  
-  googleCalendarUrl: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Ceremony&dates=20261215T050000Z/20261215T120000Z&details=We+joyfully+invite+you+to+celebrate+our+wedding+day!&location=Sri+Wedding+Hall,Chennai",
+
+  googleCalendarUrl: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sathish+%26+Bridha+Wedding&dates=20261111T033000Z/20261111T050000Z&details=We+joyfully+invite+you+to+celebrate+our+wedding+day!&location=Murugan+Kovil,+Sayalgudi",
 
   events: [
     {
-      id: "haldi",
-      title: "Haldi & Mehendi",
-      date: "Saturday, 14 Dec 2026",
-      time: "04:00 PM onwards",
-      venue: "Sri Wedding Hall, Garden Pavilion",
-      attire: "Festive Yellow / Pastel Floral",
-      icon: "Sparkles",
-      description: "Join us for an evening filled with laughter, turmeric blessings, henna art, and playful music."
-    },
-    {
-      id: "muhurtham",
-      title: "Wedding Muhurtham",
-      date: "Sunday, 15 Dec 2026",
+      id: "thalikattu",
+      title: "Thalikattu (Wedding Ceremony)",
+      date: "Wednesday, 11 Nov 2026",
       time: "09:00 AM - 10:30 AM",
-      venue: "Sri Wedding Hall, Main Mandapam",
+      venue: "Murugan Kovil, Sayalgudi",
       attire: "Traditional Silk (Pattu Saree & Veshti)",
       icon: "Heart",
-      description: "The auspicious sacred moments as Bride & Groom exchange garlands and tie the wedding knot."
+      description: "The auspicious sacred moments as Sathish & Bridha exchange garlands and tie the sacred wedding knot with the blessings of family and God."
     },
     {
-      id: "reception",
-      title: "Grand Reception & Feast",
-      date: "Sunday, 15 Dec 2026",
-      time: "07:00 PM onwards",
-      venue: "Sri Wedding Hall, Grand Ballroom",
-      attire: "Formal Evening Wear / Royal Indian Ethnic",
+      id: "virunthu",
+      title: "Virunthu (Wedding Feast)",
+      date: "Wednesday, 11 Nov 2026",
+      time: "11:00 AM onwards",
+      venue: "Ayyanar Kovil, Sayalgudi",
+      attire: "Traditional / Festive Wear",
       icon: "GlassWater",
-      description: "An evening of celebration, musical performances, royal dinner feast, and heartfelt conversations."
+      description: "Join us for a grand traditional feast and celebration in the joyous company of family and dear friends."
     }
   ],
 

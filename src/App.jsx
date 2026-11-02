@@ -3,7 +3,7 @@ import { initialWeddingData } from './data/weddingData';
 import BackgroundPetals from './components/BackgroundPetals';
 import FloatingBalloons from './components/FloatingBalloons';
 import InvitationOpening from './components/InvitationOpening';
-import HeaderControls from './components/HeaderControls';
+
 import WeddingHero from './components/WeddingHero';
 import InvitationMessage from './components/InvitationMessage';
 import WeddingDetails from './components/WeddingDetails';
@@ -18,21 +18,10 @@ import PersonalizeModal from './components/PersonalizeModal';
 import { playChimeSound, startAmbientWeddingMusic, stopAmbientWeddingMusic } from './utils/audio';
 
 export default function App() {
+  // Always use the real wedding data — clear any stale localStorage
   const [weddingData, setWeddingData] = useState(() => {
-    try {
-      const saved = localStorage.getItem('wedding_invitation_data');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (!parsed.musicUrl || parsed.musicUrl.includes('/audio/romantic-tamil-melody')) {
-          parsed.musicUrl = 'https://assets.einvitation.site/songs/Muzumathi-(Instrumental).mp3';
-          parsed.musicTitle = 'Muzumathi (Instrumental)';
-        }
-        return parsed;
-      }
-      return initialWeddingData;
-    } catch (e) {
-      return initialWeddingData;
-    }
+    try { localStorage.removeItem('wedding_invitation_data'); } catch (e) {}
+    return initialWeddingData;
   });
 
   const [isOpeningScreenVisible, setIsOpeningScreenVisible] = useState(true);
@@ -97,16 +86,7 @@ export default function App() {
       {/* Main Wedding Invitation Page Content */}
       <div className={`transition-opacity duration-1000 ${isOpeningScreenVisible ? 'opacity-20 pointer-events-none filter blur-sm' : 'opacity-100'}`}>
         
-        {/* Header Controls (Nav, Music, Edit) */}
-        <HeaderControls
-          brideName={weddingData.brideName}
-          groomName={weddingData.groomName}
-          isMusicPlaying={isMusicPlaying}
-          toggleMusic={() => handleToggleMusic()}
-          onReopenEnvelope={handleReopenEnvelope}
-          onOpenEditModal={() => setIsEditModalOpen(true)}
-          musicTitle={weddingData.musicTitle}
-        />
+        {/* Navbar removed as requested */}
 
         {/* SECTION 1 — WELCOME & HERO */}
         <WeddingHero weddingData={weddingData} />
