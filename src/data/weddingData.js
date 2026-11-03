@@ -1,9 +1,9 @@
 export const initialWeddingData = {
-  brideName: "Bridha",
-  brideFirstName: "Bridha",
+  brideName: "Brenda",
+  brideFirstName: "Brenda",
   groomName: "Sathish",
   groomFirstName: "Sathish",
-  hashtag: "#SathishWedsBridha",
+  hashtag: "#SathishWedsBredna",
 
   weddingDate: "2026-11-11T09:00:00",
   displayDate: "Wednesday, 11 November 2026",
@@ -31,7 +31,7 @@ export const initialWeddingData = {
   groomPhone: "+91 98765 43211",
   rsvpWhatsapp: "+919876543210",
 
-  googleCalendarUrl: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sathish+%26+Bridha+Wedding&dates=20261111T033000Z/20261111T050000Z&details=We+joyfully+invite+you+to+celebrate+our+wedding+day!&location=Murugan+Kovil,+Sayalgudi",
+  googleCalendarUrl: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sathish+%26+Brenda+Wedding&dates=20261111T033000Z/20261111T050000Z&details=We+joyfully+invite+you+to+celebrate+our+wedding+day!&location=Murugan+Kovil,+Sayalgudi",
 
   events: [
     {
@@ -42,7 +42,7 @@ export const initialWeddingData = {
       venue: "Murugan Kovil, Sayalgudi",
       attire: "Traditional Silk (Pattu Saree & Veshti)",
       icon: "Heart",
-      description: "The auspicious sacred moments as Sathish & Bridha exchange garlands and tie the sacred wedding knot with the blessings of family and God."
+      description: "The auspicious sacred moments as Sathish & Brenda exchange garlands and tie the sacred wedding knot with the blessings of family and God."
     },
     {
       id: "virunthu",
