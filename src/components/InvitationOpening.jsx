@@ -60,7 +60,7 @@ export default function InvitationOpening({ weddingData, onOpenComplete, isMusic
         initial={{ opacity: 1 }}
         exit={{ opacity: 0, scale: 1.05 }}
         transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden p-4 sm:p-6 select-none"
+        className="fixed inset-0 z-50 flex items-center justify-center overflow-visible p-4 sm:p-6 select-none"
       >
         {/* Real Wood & Linen Flatlay Backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -118,11 +118,11 @@ export default function InvitationOpening({ weddingData, onOpenComplete, isMusic
                 initial={{ y: 15, scale: 0.96 }}
                 animate={
                   animationStage >= 2
-                    ? { y: -160, scale: 1.04 }
+                    ? { y: '-8vh', scale: 1.04 } // slide up less to remain visible
                     : { y: 15, scale: 0.96 }
                 }
                 transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-x-3 sm:inset-x-4 top-3 bottom-3 z-15 deckled-paper rounded-xl border-2 border-[#d4af37]/70 card-shadow p-5 sm:p-7 flex flex-col justify-between text-center overflow-hidden"
+                className="absolute inset-x-3 sm:inset-x-4 top-3 bottom-3 z-20 deckled-paper rounded-xl border-2 border-[#d4af37]/70 card-shadow p-5 sm:p-7 flex flex-col justify-between text-center overflow-hidden"
               >
                 {/* Traditional Auspicious Ganesha / Om / Leaf Motif Top Icon */}
                 <div className="flex flex-col items-center justify-center pt-1">
