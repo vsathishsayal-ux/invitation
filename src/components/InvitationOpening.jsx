@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { Sparkles, Heart, Music, VolumeX, MailOpen } from 'lucide-react';
+import { Sparkles, Heart, MailOpen } from 'lucide-react';
 import FloatingHearts from './FloatingHearts';
 
-export default function InvitationOpening({ weddingData, onOpenComplete, isMusicPlaying, toggleMusic }) {
+export default function InvitationOpening({ weddingData, onOpenComplete, onStartMusic }) {
   // animationStage:
   // 0 = Envelope Closed (Wax Seal Intact)
   // 1 = Unsealing (Wax Seal Breaks with Gold Sparkles)
@@ -15,6 +15,8 @@ export default function InvitationOpening({ weddingData, onOpenComplete, isMusic
 
   const handleOpenClick = () => {
     if (animationStage > 0) return;
+
+    onStartMusic?.();
 
     // 1. Unseal phase: Wax seal breaks
     setAnimationStage(1);
@@ -76,24 +78,6 @@ export default function InvitationOpening({ weddingData, onOpenComplete, isMusic
         </div>
 
         <FloatingHearts count={12} />
-
-        <button
-          onClick={() => toggleMusic && toggleMusic()}
-          aria-label={isMusicPlaying ? 'Mute background music' : 'Play background music'}
-          className="absolute top-5 right-5 z-50 flex items-center gap-2 bg-[#ffffff]/15 hover:bg-[#ffffff]/25 backdrop-blur-md border border-[#d4af37]/60 text-[#f3e5ab] px-4 py-2 rounded-full text-xs font-semibold transition-all shadow-xl cursor-pointer hover:scale-105"
-        >
-          {isMusicPlaying ? (
-            <>
-              <Music className="w-4 h-4 text-[#d4af37] animate-bounce" />
-              <span className="tracking-wide">Music Playing</span>
-            </>
-          ) : (
-            <>
-              <VolumeX className="w-4 h-4 text-gray-300" />
-              <span className="tracking-wide">Music Off</span>
-            </>
-          )}
-        </button>
 
         {/* Outer 3D Envelope Container Wrapper */}
         <div className="relative w-full max-w-[460px] sm:max-w-[520px] mx-auto flex flex-col items-center justify-center z-20 perspective-[1400px]">

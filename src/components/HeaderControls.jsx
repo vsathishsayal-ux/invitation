@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { VolumeX, Edit3, RotateCcw, Volume2, Menu, X } from 'lucide-react';
+import { Edit3, RotateCcw, Menu, X } from 'lucide-react';
 
 export default function HeaderControls({
-  isMusicPlaying,
-  toggleMusic,
   onReopenEnvelope,
   onOpenEditModal,
   brideName,
-  groomName,
-  musicTitle
+  groomName
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -98,36 +95,6 @@ export default function HeaderControls({
           >
             <Edit3 className="w-3.5 h-3.5 text-[#d4af37]" />
             <span className="hidden sm:inline">Customize</span>
-          </button>
-
-          {/* Romantic Tamil Music Toggle Button */}
-          <button
-            onClick={toggleMusic}
-            aria-label={isMusicPlaying ? 'Mute background music' : 'Play background music'}
-            title={isMusicPlaying ? `Playing: ${musicTitle || 'Tamil Love Instrumental'}` : 'Play Romantic Background Music'}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 shadow-md cursor-pointer ${
-              isMusicPlaying
-                ? 'bg-[#4a0e17] border-[#d4af37] text-[#f3e5ab] ring-2 ring-[#d4af37]/40'
-                : 'bg-[#1e0508]/80 border-gray-600/50 text-gray-400 hover:text-white'
-            }`}
-          >
-            {isMusicPlaying ? (
-              <>
-                <Volume2 className="w-4 h-4 text-[#d4af37] animate-pulse" />
-                {/* Animated Equalizer Wave Bars */}
-                <div className="flex items-end gap-0.5 h-3.5 w-4">
-                  <div className="w-0.5 bg-[#d4af37] animate-[bounce_0.8s_ease-in-out_infinite]" style={{ animationDelay: '0ms' }} />
-                  <div className="w-0.5 bg-[#d4af37] animate-[bounce_0.8s_ease-in-out_infinite]" style={{ animationDelay: '200ms' }} />
-                  <div className="w-0.5 bg-[#d4af37] animate-[bounce_0.8s_ease-in-out_infinite]" style={{ animationDelay: '400ms' }} />
-                </div>
-                <span className="hidden lg:inline text-xs font-medium text-[#d4af37]">Tamil Music</span>
-              </>
-            ) : (
-              <>
-                <VolumeX className="w-4 h-4 text-gray-400" />
-                <span className="hidden lg:inline text-xs font-medium">Music Off</span>
-              </>
-            )}
           </button>
 
           <button

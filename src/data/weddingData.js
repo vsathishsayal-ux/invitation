@@ -10,8 +10,8 @@ export const initialWeddingData = {
   weddingTime: "9:00 AM to 10:30 AM",
   muhurthamTime: "09:00 AM - 10:30 AM",
 
-  musicTitle: "Muzumathi (Instrumental)",
-  musicUrl: "https://assets.einvitation.site/songs/Muzumathi-(Instrumental).mp3",
+  musicTitle: "Roja - Puthu Vellai Mazhai (Instrumental w. Lyrics)",
+  musicUrl: "https://soundcloud.com/amie-mohan/roja-puthu-vellai-mazhai",
 
   welcomeTitle: "Together with their families",
   invitationMessage: "With the blessings of our parents and loved ones, we joyfully invite you to be a part of our special day as we begin our journey together in love, joy, and togetherness.",

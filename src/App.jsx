@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Music2, VolumeX } from 'lucide-react';
 import { initialWeddingData } from './data/weddingData';
 import FloatingHearts from './components/FloatingHearts';
 import InvitationOpening from './components/InvitationOpening';
@@ -14,7 +15,7 @@ import Blessings from './components/Blessings';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
 import PersonalizeModal from './components/PersonalizeModal';
-import { playChimeSound, startAmbientWeddingMusic, stopAmbientWeddingMusic } from './utils/audio';
+import { playChimeSound, prepareAmbientWeddingMusic, startAmbientWeddingMusic, subscribeAudioState, toggleAmbientWeddingMusicMute } from './utils/audio';
 
 export default function App() {
   // Always use the real wedding data — clear any stale localStorage
@@ -25,28 +26,36 @@ export default function App() {
 
   const [isOpeningScreenVisible, setIsOpeningScreenVisible] = useState(true);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isMusicMuted, setIsMusicMuted] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+  useEffect(() => subscribeAudioState(setIsMusicPlaying), []);
+
+  useEffect(() => {
+    prepareAmbientWeddingMusic(weddingData.musicUrl);
+  }, [weddingData.musicUrl]);
+
   // Toggle background wedding ambient audio
-  const handleToggleMusic = (forcePlay = null) => {
-    const nextState = forcePlay !== null ? forcePlay : !isMusicPlaying;
-    setIsMusicPlaying(nextState);
-    if (nextState) {
-      startAmbientWeddingMusic(weddingData.musicUrl || 'https://assets.einvitation.site/songs/Muzumathi-(Instrumental).mp3');
-    } else {
-      stopAmbientWeddingMusic();
+  const handleToggleMusic = () => {
+    if (isMusicPlaying) {
+      setIsMusicMuted(toggleAmbientWeddingMusicMute());
+      return;
     }
+
+    setIsMusicMuted(false);
+    startAmbientWeddingMusic(weddingData.musicUrl);
+  };
+
+  const handleStartMusic = () => {
+    if (isMusicPlaying) return;
+    setIsMusicMuted(false);
+    startAmbientWeddingMusic(weddingData.musicUrl);
   };
 
   // Called after wax seal opening animation completes and invitation opens
   const handleOpenComplete = () => {
     setIsOpeningScreenVisible(false);
     playChimeSound();
-    
-    // Automatically play romantic background music AFTER opening the invitation
-    if (!isMusicPlaying) {
-      handleToggleMusic(true);
-    }
   };
 
   // Re-open envelope animation
@@ -73,8 +82,7 @@ export default function App() {
         <InvitationOpening
           weddingData={weddingData}
           onOpenComplete={handleOpenComplete}
-          isMusicPlaying={isMusicPlaying}
-          toggleMusic={handleToggleMusic}
+          onStartMusic={handleStartMusic}
         />
       )}
 
@@ -84,11 +92,8 @@ export default function App() {
         <HeaderControls
           brideName={weddingData.brideName}
           groomName={weddingData.groomName}
-          isMusicPlaying={isMusicPlaying}
-          toggleMusic={() => handleToggleMusic()}
           onReopenEnvelope={handleReopenEnvelope}
           onOpenEditModal={() => setIsEditModalOpen(true)}
-          musicTitle={weddingData.musicTitle}
         />
 
         {/* SECTION 1 — WELCOME & HERO */}
@@ -127,6 +132,18 @@ export default function App() {
         currentData={weddingData}
         onSave={handleSaveData}
       />
+
+      <button
+        type="button"
+        onClick={handleToggleMusic}
+        aria-label={isMusicPlaying ? (isMusicMuted ? 'Unmute background music' : 'Mute background music') : 'Play background music'}
+        title={isMusicPlaying ? (isMusicMuted ? 'Unmute background music' : 'Mute background music') : 'Play background music'}
+        className="fixed bottom-5 right-5 z-[70] flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]/70 bg-[#4a0e17]/90 text-[#f3e5ab] shadow-lg backdrop-blur transition hover:scale-105 hover:bg-[#4a0e17] sm:bottom-6 sm:right-6"
+      >
+        {isMusicPlaying && !isMusicMuted
+          ? <Music2 className="h-5 w-5 animate-pulse text-[#d4af37]" />
+          : <VolumeX className="h-5 w-5" />}
+      </button>
 
     </div>
   );
