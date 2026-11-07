@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Edit3, RotateCcw, Menu, X } from 'lucide-react';
+import { Heart, Menu, X } from 'lucide-react';
 
 export default function HeaderControls({
-  onReopenEnvelope,
-  onOpenEditModal,
   brideName,
   groomName
 }) {
@@ -28,8 +26,6 @@ export default function HeaderControls({
     setIsMobileMenuOpen(false);
   };
 
-  const groomInit = groomName?.[0] || 'S';
-  const brideInit = brideName?.[0] || 'A';
   const navItems = [
     ['Home', 'welcome'],
     ['Invitation', 'message'],
@@ -52,8 +48,11 @@ export default function HeaderControls({
         
         {/* Left Monogram / Branding */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('welcome')}>
-          <div className="w-9 h-9 rounded-full maroon-bg-gradient border-2 border-[#d4af37] flex items-center justify-center text-[#fcf6ba] font-serif-heading font-bold text-xs shadow-md">
-            {groomInit} &amp; {brideInit}
+          <div className="relative flex h-10 w-10 shrink-0 items-center justify-center">
+            <Heart className="absolute h-10 w-10 fill-[#4a0e17] text-[#d4af37]" strokeWidth={1.5} />
+            <span className="relative mt-0.5 font-serif-heading text-[9px] font-bold tracking-tight text-[#fcf6ba]">
+              S&amp;B
+            </span>
           </div>
           <div className="hidden sm:block">
             <span className="font-serif-heading text-xs tracking-wider text-[#fcf6ba] block font-semibold">
@@ -76,27 +75,6 @@ export default function HeaderControls({
 
         {/* Right Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
-          
-          {/* Re-open Envelope button */}
-          <button
-            onClick={onReopenEnvelope}
-            title="Re-open Invitation Envelope"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fdfbf7]/10 hover:bg-[#fdfbf7]/20 border border-[#d4af37]/40 text-[#fcf6ba] text-xs font-sans-clean transition cursor-pointer"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-[#d4af37]" />
-            <span className="hidden sm:inline">Envelope</span>
-          </button>
-
-          {/* Personalize / Edit button */}
-          <button
-            onClick={onOpenEditModal}
-            title="Customize Wedding Data"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#d4af37]/20 hover:bg-[#d4af37]/30 border border-[#d4af37] text-[#fcf6ba] text-xs font-sans-clean transition font-medium cursor-pointer"
-          >
-            <Edit3 className="w-3.5 h-3.5 text-[#d4af37]" />
-            <span className="hidden sm:inline">Customize</span>
-          </button>
-
           <button
             type="button"
             className="lg:hidden w-9 h-9 rounded-full border border-[#d4af37]/50 text-[#fcf6ba] flex items-center justify-center"

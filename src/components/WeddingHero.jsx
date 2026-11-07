@@ -57,9 +57,9 @@ export default function WeddingHero({ weddingData }) {
             transition={{ delay: 0.4, duration: 0.9 }}
             className="py-2"
           >
-            {/* Bride Name */}
+            {/* Groom Name */}
             <h1 className="font-serif-heading text-3xl sm:text-5xl md:text-6xl text-[#4a0e17] font-extrabold tracking-tight drop-shadow-md leading-tight">
-              {weddingData.brideName}
+              {weddingData.groomName}
             </h1>
 
             {/* Ampersand */}
@@ -69,9 +69,9 @@ export default function WeddingHero({ weddingData }) {
               </span>
             </div>
 
-            {/* Groom Name */}
+            {/* Bride Name */}
             <h1 className="font-serif-heading text-3xl sm:text-5xl md:text-6xl text-[#4a0e17] font-extrabold tracking-tight drop-shadow-md leading-tight">
-              {weddingData.groomName}
+              {weddingData.brideName}
             </h1>
           </motion.div>
 

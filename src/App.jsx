@@ -58,12 +58,6 @@ export default function App() {
     playChimeSound();
   };
 
-  // Re-open envelope animation
-  const handleReopenEnvelope = () => {
-    setIsOpeningScreenVisible(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   // Save personalized data
   const handleSaveData = (newData) => {
     setWeddingData(newData);
@@ -92,8 +86,6 @@ export default function App() {
         <HeaderControls
           brideName={weddingData.brideName}
           groomName={weddingData.groomName}
-          onReopenEnvelope={handleReopenEnvelope}
-          onOpenEditModal={() => setIsEditModalOpen(true)}
         />
 
         {/* SECTION 1 — WELCOME & HERO */}
@@ -121,7 +113,7 @@ export default function App() {
         <RSVP weddingData={weddingData} />
 
         {/* SECTION 9 — FOOTER */}
-        <Footer weddingData={weddingData} onReopenEnvelope={handleReopenEnvelope} />
+        <Footer weddingData={weddingData} />
 
       </div>
 

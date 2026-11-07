@@ -51,7 +51,7 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
   const groomName = weddingData?.groomFirstName || weddingData?.groomName || 'Sathish';
   const brideInit = brideName[0] || 'S';
   const groomInit = groomName[0] || 'S';
-  const monogram = `${brideInit} & ${groomInit}`;
+  const monogram = `${groomInit} & ${brideInit}`;
 
   if (isFullyOpened) return null;
 
@@ -141,7 +141,7 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
                   </p>
                   
                   <h1 className="font-serif-heading text-2xl sm:text-3xl text-[#4a0e17] font-bold tracking-wide drop-shadow-sm">
-                    {brideName}
+                    {groomName}
                   </h1>
 
                   <div className="flex items-center justify-center gap-3 my-1">
@@ -151,7 +151,7 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
                   </div>
 
                   <h1 className="font-serif-heading text-2xl sm:text-3xl text-[#4a0e17] font-bold tracking-wide drop-shadow-sm">
-                    {groomName}
+                    {brideName}
                   </h1>
 
                   <p className="text-xs sm:text-sm font-serif-body text-[#7d1927] font-semibold tracking-wider mt-2.5">

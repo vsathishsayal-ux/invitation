@@ -55,7 +55,7 @@ export default function RSVP({ weddingData }) {
 
   const getWhatsAppLink = (phone, text) => {
     const cleanPhone = (phone || '').replace(/[^0-9]/g, '');
-    const encodedText = encodeURIComponent(text || `Hello! I would love to attend the wedding of ${weddingData.brideFirstName} & ${weddingData.groomFirstName}!`);
+    const encodedText = encodeURIComponent(text || `Hello! I would love to attend the wedding of ${weddingData.groomFirstName} & ${weddingData.brideFirstName}!`);
     return `https://wa.me/${cleanPhone}?text=${encodedText}`;
   };
 
@@ -89,7 +89,7 @@ export default function RSVP({ weddingData }) {
           
           {/* WhatsApp RSVP */}
           <a
-            href={getWhatsAppLink(weddingData.rsvpWhatsapp, `Hi! Confirming my attendance for ${weddingData.brideFirstName} & ${weddingData.groomFirstName}'s wedding.`)}
+            href={getWhatsAppLink(weddingData.rsvpWhatsapp, `Hi! Confirming my attendance for ${weddingData.groomFirstName} & ${weddingData.brideFirstName}'s wedding.`)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2.5 p-4 rounded-2xl maroon-bg-gradient text-[#fcf6ba] font-sans-clean font-bold text-xs sm:text-sm uppercase tracking-wider border border-[#d4af37] hover:scale-105 transition shadow-lg text-center"
