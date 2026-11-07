@@ -67,7 +67,7 @@ function getSoundCloudPlayer(trackUrl) {
     const iframe = document.createElement('iframe');
     const playerUrl = new URL('https://w.soundcloud.com/player/');
     playerUrl.searchParams.set('url', trackUrl);
-    playerUrl.searchParams.set('auto_play', 'true');
+    playerUrl.searchParams.set('auto_play', 'false');
     playerUrl.searchParams.set('loop', 'true');
     playerUrl.searchParams.set('visual', 'false');
     playerUrl.searchParams.set('show_artwork', 'false');
@@ -171,9 +171,11 @@ export function subscribeAudioState(listener) {
 }
 
 export function prepareAmbientWeddingMusic(trackUrl) {
-  if (!/^https?:\/\/(?:www\.)?soundcloud\.com\//i.test(trackUrl || '')) return;
+  if (!/^https?:\/\/(?:www\.)?soundcloud\.com\//i.test(trackUrl || '')) {
+    return Promise.resolve();
+  }
 
-  startAmbientWeddingMusic(trackUrl);
+  return getSoundCloudPlayer(trackUrl);
 }
 
 export function getAudioState() {
@@ -181,29 +183,61 @@ export function getAudioState() {
 }
 
 export function playChimeSound() {
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) {
+    return Promise.reject(new Error('Web Audio is not available in this browser.'));
+  }
+
+  let ctx;
   try {
-    const Ctx = window.AudioContext || window.webkitAudioContext;
-    if (!Ctx) return;
-    const ctx = new Ctx();
-    
-    // Play a gentle 3-note chime (E5, G#5, B5 - Indian Wedding Chime)
-    const notes = [659.25, 830.61, 987.77];
-    notes.forEach((freq, idx) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.15);
-      
-      gain.gain.setValueAtTime(0, ctx.currentTime + idx * 0.15);
-      gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + idx * 0.15 + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.15 + 1.8);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(ctx.currentTime + idx * 0.15);
-      osc.stop(ctx.currentTime + idx * 0.15 + 2.0);
-    });
-  } catch (e) {}
+    ctx = new Ctx();
+  } catch (error) {
+    return Promise.reject(error);
+  }
+
+  return ctx.resume().then(() => new Promise((resolve, reject) => {
+    try {
+      let remainingNotes = 3;
+      const notes = [659.25, 830.61, 987.77];
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const startTime = ctx.currentTime + idx * 0.15;
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
+
+        gain.gain.setValueAtTime(0, startTime);
+        gain.gain.linearRampToValueAtTime(0.12, startTime + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 1.8);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.onended = () => {
+          remainingNotes -= 1;
+          if (remainingNotes === 0) {
+            ctx.close().catch((error) => {
+              console.error('Unable to close the invitation sound context.', error);
+            });
+            resolve();
+          }
+        };
+        osc.start(startTime);
+        osc.stop(startTime + 2.0);
+      });
+    } catch (error) {
+      ctx.close().catch((closeError) => {
+        console.error('Unable to close the invitation sound context.', closeError);
+      });
+      reject(error);
+    }
+  })).catch((error) => {
+    if (ctx.state !== 'closed') {
+      ctx.close().catch((closeError) => {
+        console.error('Unable to close the invitation sound context.', closeError);
+      });
+    }
+    throw error;
+  });
 }
 
 export function startAmbientWeddingMusic(customAudioUrl = 'https://assets.einvitation.site/songs/Muzumathi-(Instrumental).mp3') {

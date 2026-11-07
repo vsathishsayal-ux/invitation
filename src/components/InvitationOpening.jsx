@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { Sparkles, Heart, MailOpen } from 'lucide-react';
 import FloatingHearts from './FloatingHearts';
 
-export default function InvitationOpening({ weddingData, onOpenComplete, onStartMusic }) {
+export default function InvitationOpening({ weddingData, onOpenComplete, onStartOpeningSound }) {
   // animationStage:
   // 0 = Envelope Closed (Wax Seal Intact)
   // 1 = Unsealing (Wax Seal Breaks with Gold Sparkles)
@@ -16,7 +16,7 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
   const handleOpenClick = () => {
     if (animationStage > 0) return;
 
-    onStartMusic?.();
+    onStartOpeningSound?.();
 
     // 1. Unseal phase: Wax seal breaks
     setAnimationStage(1);
@@ -40,7 +40,7 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
       setAnimationStage(3);
     }, 2100);
 
-    // 4. Complete opening & trigger background audio playback
+    // 4. Complete the invitation opening
     setTimeout(() => {
       setIsFullyOpened(true);
       if (onOpenComplete) onOpenComplete();

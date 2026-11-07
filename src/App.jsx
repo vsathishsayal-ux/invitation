@@ -25,6 +25,7 @@ export default function App() {
   });
 
   const [isOpeningScreenVisible, setIsOpeningScreenVisible] = useState(true);
+  const [isOpeningSoundFinished, setIsOpeningSoundFinished] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isMusicMuted, setIsMusicMuted] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -32,11 +33,14 @@ export default function App() {
   useEffect(() => subscribeAudioState(setIsMusicPlaying), []);
 
   useEffect(() => {
-    prepareAmbientWeddingMusic(weddingData.musicUrl);
+    prepareAmbientWeddingMusic(weddingData.musicUrl)
+      .catch((error) => console.error('Unable to prepare the background music player.', error));
   }, [weddingData.musicUrl]);
 
   // Toggle background wedding ambient audio
   const handleToggleMusic = () => {
+    if (isOpeningScreenVisible || !isOpeningSoundFinished) return;
+
     if (isMusicPlaying) {
       setIsMusicMuted(toggleAmbientWeddingMusicMute());
       return;
@@ -46,16 +50,22 @@ export default function App() {
     startAmbientWeddingMusic(weddingData.musicUrl);
   };
 
-  const handleStartMusic = () => {
-    if (isMusicPlaying) return;
-    setIsMusicMuted(false);
-    startAmbientWeddingMusic(weddingData.musicUrl);
+  const handleStartOpeningSound = () => {
+    playChimeSound()
+      .then(() => {
+        setIsOpeningSoundFinished(true);
+        startAmbientWeddingMusic(weddingData.musicUrl);
+      })
+      .catch((error) => {
+        console.error('Unable to play the invitation opening sound.', error);
+        setIsOpeningSoundFinished(true);
+        startAmbientWeddingMusic(weddingData.musicUrl);
+      });
   };
 
-  // Called after wax seal opening animation completes and invitation opens
+  // Called after the opening animation completes
   const handleOpenComplete = () => {
     setIsOpeningScreenVisible(false);
-    playChimeSound();
   };
 
   // Save personalized data
@@ -76,7 +86,7 @@ export default function App() {
         <InvitationOpening
           weddingData={weddingData}
           onOpenComplete={handleOpenComplete}
-          onStartMusic={handleStartMusic}
+          onStartOpeningSound={handleStartOpeningSound}
         />
       )}
 
@@ -128,9 +138,10 @@ export default function App() {
       <button
         type="button"
         onClick={handleToggleMusic}
+        disabled={isOpeningScreenVisible || !isOpeningSoundFinished}
         aria-label={isMusicPlaying ? (isMusicMuted ? 'Unmute background music' : 'Mute background music') : 'Play background music'}
         title={isMusicPlaying ? (isMusicMuted ? 'Unmute background music' : 'Mute background music') : 'Play background music'}
-        className="fixed bottom-5 right-5 z-[70] flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]/70 bg-[#4a0e17]/90 text-[#f3e5ab] shadow-lg backdrop-blur transition hover:scale-105 hover:bg-[#4a0e17] sm:bottom-6 sm:right-6"
+        className="fixed bottom-5 right-5 z-[70] flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]/70 bg-[#4a0e17]/90 text-[#f3e5ab] shadow-lg backdrop-blur transition hover:scale-105 hover:bg-[#4a0e17] disabled:cursor-not-allowed disabled:opacity-60 sm:bottom-6 sm:right-6"
       >
         {isMusicPlaying && !isMusicMuted
           ? <Music2 className="h-5 w-5 animate-pulse text-[#d4af37]" />
