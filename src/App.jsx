@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { initialWeddingData } from './data/weddingData';
-import BackgroundPetals from './components/BackgroundPetals';
-import FloatingBalloons from './components/FloatingBalloons';
+import FloatingHearts from './components/FloatingHearts';
 import InvitationOpening from './components/InvitationOpening';
+import HeaderControls from './components/HeaderControls';
 
 import WeddingHero from './components/WeddingHero';
 import InvitationMessage from './components/InvitationMessage';
@@ -10,7 +10,6 @@ import WeddingDetails from './components/WeddingDetails';
 import Countdown from './components/Countdown';
 import Venue from './components/Venue';
 import Events from './components/Events';
-import Gallery from './components/Gallery';
 import Blessings from './components/Blessings';
 import RSVP from './components/RSVP';
 import Footer from './components/Footer';
@@ -67,11 +66,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen paper-texture selection:bg-[#c5a059]/40 selection:text-[#4a0e17]">
       
-      {/* Photorealistic falling rose & jasmine flower petals */}
-      <BackgroundPetals count={22} />
-
-      {/* Elegant floating champagne, ivory, blush pink & muted gold balloons along screen edges */}
-      <FloatingBalloons count={6} />
+      {!isOpeningScreenVisible && <FloatingHearts count={12} />}
 
       {/* Physical Envelope & Ribbon Opening Animation Overlay */}
       {isOpeningScreenVisible && (
@@ -86,7 +81,15 @@ export default function App() {
       {/* Main Wedding Invitation Page Content */}
       <div className={`transition-opacity duration-1000 ${isOpeningScreenVisible ? 'opacity-20 pointer-events-none filter blur-sm' : 'opacity-100'}`}>
         
-        {/* Navbar removed as requested */}
+        <HeaderControls
+          brideName={weddingData.brideName}
+          groomName={weddingData.groomName}
+          isMusicPlaying={isMusicPlaying}
+          toggleMusic={() => handleToggleMusic()}
+          onReopenEnvelope={handleReopenEnvelope}
+          onOpenEditModal={() => setIsEditModalOpen(true)}
+          musicTitle={weddingData.musicTitle}
+        />
 
         {/* SECTION 1 — WELCOME & HERO */}
         <WeddingHero weddingData={weddingData} />
@@ -106,16 +109,13 @@ export default function App() {
         {/* SECTION 6 — EVENTS */}
         <Events events={weddingData.events} />
 
-        {/* SECTION 7 — PHOTO / MEMORIES */}
-        <Gallery gallery={weddingData.gallery} />
-
-        {/* SECTION 8 — BLESSINGS / MESSAGE */}
+        {/* SECTION 7 — BLESSINGS / MESSAGE */}
         <Blessings weddingData={weddingData} />
 
-        {/* SECTION 9 — RSVP */}
+        {/* SECTION 8 — RSVP */}
         <RSVP weddingData={weddingData} />
 
-        {/* SECTION 10 — FOOTER */}
+        {/* SECTION 9 — FOOTER */}
         <Footer weddingData={weddingData} onReopenEnvelope={handleReopenEnvelope} />
 
       </div>

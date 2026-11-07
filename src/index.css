@@ -91,20 +91,6 @@
     0 5px 15px -5px rgba(74, 14, 23, 0.08);
 }
 
-/* Floating animation for subtle background items */
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(3deg);
-  }
-}
-
-.animate-float {
-  animation: floatSlow 6s ease-in-out infinite;
-}
-
 @keyframes pulseGlow {
   0%, 100% {
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), 0 0 30px rgba(74, 14, 23, 0.2);
@@ -191,44 +177,33 @@
   animation: pulseSeal 2.2s ease-in-out infinite;
 }
 
-/* ============================================================ */
-/* REALISTIC BALLOON FLY & SMOOTH TOP FADE ANIMATION             */
-/* ============================================================ */
-
-@keyframes realisticBalloonFly {
+@keyframes floatingHeartRise {
   0% {
-    transform: translateY(20vh) scale(0.5);
     opacity: 0;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
   12% {
-    opacity: 0.95;
-    transform: translateY(-15vh) scale(0.75);
+    opacity: 0.36;
   }
-  75% {
-    opacity: 0.95;
-    transform: translateY(-80vh) scale(0.95);
-    filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.35));
-  }
-  92% {
-    opacity: 0.3;
-    transform: translateY(-94vh) scale(1.0);
+  78% {
+    opacity: 0.28;
   }
   100% {
-    transform: translateY(-102vh) scale(1.02);
     opacity: 0;
+    transform: translate3d(var(--heart-drift), -108vh, 0) rotate(var(--heart-rotation));
   }
 }
 
-@keyframes balloonSway {
-  0%, 100% {
-    transform: rotate(-6deg) translateX(-8px);
-  }
-  50% {
-    transform: rotate(6deg) translateX(8px);
-  }
+.floating-heart {
+  animation-name: floatingHeartRise;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  text-shadow: 0 0 8px currentColor;
+  will-change: transform, opacity;
 }
 
-.animate-balloon-sway {
-  animation: balloonSway 4.5s ease-in-out infinite;
+@media (prefers-reduced-motion: reduce) {
+  .floating-heart {
+    display: none;
+  }
 }

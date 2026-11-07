@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Music, VolumeX, Edit3, RotateCcw, Volume2 } from 'lucide-react';
+import { VolumeX, Edit3, RotateCcw, Volume2, Menu, X } from 'lucide-react';
 
 export default function HeaderControls({
   isMusicPlaying,
@@ -11,6 +11,7 @@ export default function HeaderControls({
   musicTitle
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,12 +24,24 @@ export default function HeaderControls({
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 0;
+      const top = window.scrollY + el.getBoundingClientRect().top - headerHeight - 12;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
+    setIsMobileMenuOpen(false);
   };
 
   const groomInit = groomName?.[0] || 'S';
   const brideInit = brideName?.[0] || 'A';
+  const navItems = [
+    ['Home', 'welcome'],
+    ['Invitation', 'message'],
+    ['Details', 'details'],
+    ['Countdown', 'countdown'],
+    ['Events', 'events'],
+    ['Venue', 'venue'],
+    ['RSVP', 'rsvp'],
+  ];
 
   return (
     <header
@@ -38,7 +51,7 @@ export default function HeaderControls({
           : 'bg-gradient-to-b from-[#3a0910]/90 via-[#3a0910]/40 to-transparent py-4'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div className="relative max-w-6xl mx-auto px-4 flex items-center justify-between">
         
         {/* Left Monogram / Branding */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('welcome')}>
@@ -56,15 +69,12 @@ export default function HeaderControls({
         </div>
 
         {/* Center Quick Nav Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans-clean font-medium text-[#fcf6ba]/90">
-          <button onClick={() => scrollToSection('welcome')} className="hover:text-[#d4af37] transition">Home</button>
-          <button onClick={() => scrollToSection('message')} className="hover:text-[#d4af37] transition">Invitation</button>
-          <button onClick={() => scrollToSection('details')} className="hover:text-[#d4af37] transition">Details</button>
-          <button onClick={() => scrollToSection('countdown')} className="hover:text-[#d4af37] transition">Countdown</button>
-          <button onClick={() => scrollToSection('events')} className="hover:text-[#d4af37] transition">Events</button>
-          <button onClick={() => scrollToSection('gallery')} className="hover:text-[#d4af37] transition">Memories</button>
-          <button onClick={() => scrollToSection('venue')} className="hover:text-[#d4af37] transition">Venue</button>
-          <button onClick={() => scrollToSection('rsvp')} className="hover:text-[#d4af37] transition">RSVP</button>
+        <nav className="hidden lg:flex items-center gap-3 xl:gap-6 text-xs uppercase tracking-widest font-sans-clean font-medium text-[#fcf6ba]/90">
+          {navItems.map(([label, id]) => (
+            <button key={id} onClick={() => scrollToSection(id)} className="hover:text-[#d4af37] transition">
+              {label}
+            </button>
+          ))}
         </nav>
 
         {/* Right Actions */}
@@ -87,12 +97,13 @@ export default function HeaderControls({
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#d4af37]/20 hover:bg-[#d4af37]/30 border border-[#d4af37] text-[#fcf6ba] text-xs font-sans-clean transition font-medium cursor-pointer"
           >
             <Edit3 className="w-3.5 h-3.5 text-[#d4af37]" />
-            <span>Customize</span>
+            <span className="hidden sm:inline">Customize</span>
           </button>
 
           {/* Romantic Tamil Music Toggle Button */}
           <button
             onClick={toggleMusic}
+            aria-label={isMusicPlaying ? 'Mute background music' : 'Play background music'}
             title={isMusicPlaying ? `Playing: ${musicTitle || 'Tamil Love Instrumental'}` : 'Play Romantic Background Music'}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 shadow-md cursor-pointer ${
               isMusicPlaying
@@ -119,7 +130,34 @@ export default function HeaderControls({
             )}
           </button>
 
+          <button
+            type="button"
+            className="lg:hidden w-9 h-9 rounded-full border border-[#d4af37]/50 text-[#fcf6ba] flex items-center justify-center"
+            aria-label={isMobileMenuOpen ? 'Close section menu' : 'Open section menu'}
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+          >
+            {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          </button>
+
         </div>
+
+        {isMobileMenuOpen && (
+          <nav
+            aria-label="Mobile section navigation"
+            className="absolute left-4 right-4 top-full mt-2 grid grid-cols-2 gap-1 rounded-xl border border-[#d4af37]/50 bg-[#4a0e17]/95 p-2 text-xs uppercase tracking-wider text-[#fcf6ba] shadow-xl backdrop-blur-md lg:hidden"
+          >
+            {navItems.map(([label, id]) => (
+              <button
+                key={id}
+                onClick={() => scrollToSection(id)}
+                className="rounded-lg px-3 py-2.5 text-left hover:bg-[#d4af37]/20"
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+        )}
 
       </div>
     </header>
