@@ -128,21 +128,6 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
                 transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-x-3 sm:inset-x-4 top-3 bottom-3 z-20 deckled-paper rounded-xl border-2 border-[#d4af37]/70 card-shadow p-5 sm:p-7 flex flex-col justify-between text-center overflow-hidden"
               >
-                {/* Traditional Auspicious Ganesha / Om / Leaf Motif Top Icon */}
-                <div className="flex flex-col items-center justify-center pt-1">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#d4af37] via-[#f3e5ab] to-[#aa820a] p-0.5 shadow-md flex items-center justify-center">
-                    <div className="w-full h-full bg-[#4a0e17] rounded-full flex items-center justify-center">
-                      <span className="font-serif-heading text-[#f3e5ab] text-xs font-bold tracking-widest">
-                        卐
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-[9px] uppercase tracking-[0.35em] text-[#aa771c] font-bold mt-1.5 block">
-                    Royal Wedding Invitation
-                  </span>
-                  <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mt-1" />
-                </div>
-
                 {/* Couple Names Calligraphy & Wedding Details */}
                 <div className="my-auto py-2">
                   <p className="text-[10px] uppercase tracking-[0.2em] text-[#8c6b2d] font-serif-body font-bold mb-1">

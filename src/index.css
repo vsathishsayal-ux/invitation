@@ -271,18 +271,18 @@
   will-change: transform, opacity;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-::-webkit-scrollbar-track {
-  background: #f6efe9;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(199, 154, 71, 0.9);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(75, 23, 32, 0.9);
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
