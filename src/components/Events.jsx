@@ -26,10 +26,10 @@ export default function Events({ events }) {
       </div>
 
       {/* Events Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 justify-items-center max-w-4xl mx-auto">
         {events.map((evt, index) => {
           const IconComponent = iconMap[evt.icon] || Sparkles;
-          
+
           return (
             <motion.div
               key={evt.id || index}
@@ -37,7 +37,7 @@ export default function Events({ events }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="bg-[#fdfbf7] rounded-3xl border-2 border-[#d4af37]/45 card-shadow p-6 flex flex-col justify-between hover:border-[#d4af37] transition group relative overflow-hidden"
+              className="w-full max-w-[30rem] bg-[#fdfbf7] rounded-3xl border-2 border-[#d4af37]/45 card-shadow p-6 flex flex-col justify-between hover:border-[#d4af37] transition group relative overflow-hidden"
             >
               {/* Top Accent line */}
               <div className="absolute top-0 left-0 right-0 h-1.5 maroon-bg-gradient z-10" />
