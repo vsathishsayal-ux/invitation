@@ -4,88 +4,71 @@ import { MapPin, Navigation, Compass, ExternalLink } from 'lucide-react';
 
 export default function Venue({ weddingData }) {
   return (
-    <section id="venue" className="py-16 px-4 relative max-w-4xl mx-auto">
-      
-      {/* Section Title */}
-      <div className="text-center mb-10">
-        <span className="text-xs uppercase tracking-[0.3em] text-[#aa771c] font-bold block mb-2">
-          Location &amp; Directions
-        </span>
-        <h2 className="font-serif-heading text-3xl sm:text-4xl text-[#4a0e17] font-bold">
-          The Wedding Venue
-        </h2>
-        <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mt-3" />
+    <section id="venue" className="section-shell relative py-10 sm:py-12">
+      <div className="mb-8 text-center sm:mb-10">
+        <span className="section-kicker">Location &amp; directions</span>
+        <h2 className="section-heading">The wedding venue</h2>
+        <div className="section-divider" />
       </div>
 
-      {/* Main Venue Card */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="bg-[#fdfbf7] rounded-3xl border-2 border-[#d4af37]/50 card-shadow overflow-hidden grid grid-cols-1 md:grid-cols-2"
+        className="grid overflow-hidden rounded-[2rem] border border-[#d7b168]/50 bg-[#fffdfb] shadow-[0_18px_40px_rgba(35,17,19,0.08)] md:grid-cols-2"
       >
-        {/* Left Venue Details */}
-        <div className="p-8 sm:p-10 flex flex-col justify-between">
+        <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#faf6f0] border border-[#d4af37]/40 text-[#aa771c] text-xs font-semibold mb-4">
-              <Compass className="w-3.5 h-3.5" />
-              <span>Event Destination</span>
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#d7b168]/50 bg-[#fffaf5] px-3 py-1.5 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[#a7701b]">
+              <Compass className="h-3.5 w-3.5" />
+              Event destination
             </div>
 
-            <h3 className="font-serif-heading text-2xl sm:text-3xl text-[#4a0e17] font-bold mb-3">
-              {weddingData.venueName}
-            </h3>
-
-            <p className="text-sm text-[#3c2a21] leading-relaxed mb-4">
-              {weddingData.venueAddress}
-            </p>
+            <h3 className="font-serif-heading text-3xl text-[#4b1720]">{weddingData.venueName}</h3>
+            <p className="mt-3 text-base leading-relaxed text-[#4d3b35]">{weddingData.venueAddress}</p>
 
             {weddingData.venueLandmark && (
-              <div className="bg-[#faf6f0] p-3.5 rounded-xl border border-[#d4af37]/30 text-xs text-[#8c6b2d] mb-6 flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-                <span><strong>Landmark:</strong> {weddingData.venueLandmark}</span>
+              <div className="mt-5 flex items-start gap-3 rounded-2xl border border-[#d7b168]/35 bg-[#fffaf5] p-3 text-sm text-[#6e554d]">
+                <MapPin className="mt-0.5 h-4 w-4 text-[#a7701b]" />
+                <span><span className="font-semibold text-[#4b1720]">Landmark:</span> {weddingData.venueLandmark}</span>
               </div>
             )}
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="mt-7">
             <a
               href={weddingData.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full maroon-bg-gradient text-[#fcf6ba] font-sans-clean font-semibold text-xs sm:text-sm uppercase tracking-wider border border-[#d4af37] hover:scale-105 transition shadow-lg"
+              className="inline-flex items-center gap-2 rounded-full bg-[#4b1720] px-5 py-3 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#f8e8b7] shadow-md transition hover:-translate-y-0.5"
             >
-              <Navigation className="w-4 h-4 text-[#d4af37]" />
-              <span>View Location on Google Maps</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <Navigation className="h-4 w-4 text-[#f5dca6]" />
+              <span>View on Google Maps</span>
+              <ExternalLink className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
 
-        {/* Right Embedded Map Preview */}
-        <div className="relative min-h-[260px] sm:min-h-[340px] bg-[#e5e3df] border-t md:border-t-0 md:border-l border-[#d4af37]/40 overflow-hidden">
+        <div className="min-h-[280px] border-t border-[#d7b168]/40 bg-[#f4eee8] md:min-h-[360px] md:border-l md:border-t-0">
           {weddingData.embedMapUrl ? (
             <iframe
               title="Venue Google Map"
               src={weddingData.embedMapUrl}
-              className="w-full h-full border-0 min-h-[280px]"
+              className="h-full min-h-[280px] w-full border-0 md:min-h-[360px]"
               loading="lazy"
               allowFullScreen=""
               referrerPolicy="no-referrer-when-downgrade"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#f7f3ec]">
-              <MapPin className="w-12 h-12 text-[#d4af37] mb-2" />
-              <p className="font-serif-heading font-bold text-[#4a0e17]">{weddingData.venueName}</p>
-              <p className="text-xs text-gray-600 mt-1 max-w-xs">{weddingData.venueAddress}</p>
+            <div className="flex h-full flex-col items-center justify-center p-6 text-center">
+              <MapPin className="mb-2 h-12 w-12 text-[#a7701b]" />
+              <p className="font-serif-heading text-2xl text-[#4b1720]">{weddingData.venueName}</p>
+              <p className="mt-2 max-w-xs text-sm text-[#6a4f43]">{weddingData.venueAddress}</p>
             </div>
           )}
         </div>
-
       </motion.div>
-
     </section>
   );
 }

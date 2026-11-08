@@ -1,107 +1,72 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, ExternalLink, CalendarPlus } from 'lucide-react';
-import FloralBorder from './FloralBorder';
 
 export default function WeddingDetails({ weddingData }) {
   return (
-    <section id="details" className="py-16 px-4 relative max-w-4xl mx-auto">
-      
-      {/* Section Header */}
-      <div className="text-center mb-12">
-        <span className="text-xs uppercase tracking-[0.3em] text-[#aa771c] font-bold block mb-2">
-          Save The Date
-        </span>
-        <h2 className="font-serif-heading text-3xl sm:text-4xl text-[#4a0e17] font-bold">
-          Wedding Ceremony Details
-        </h2>
-        <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mt-3" />
+    <section id="details" className="section-shell relative py-10 sm:py-12">
+      <div className="mb-8 text-center sm:mb-10">
+        <span className="section-kicker">Save the date</span>
+        <h2 className="section-heading">Wedding details</h2>
+        <div className="section-divider" />
       </div>
 
-      {/* Main Details Card Wrapped in Integrated Floral Border */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
+        className="section-card p-5 sm:p-8 lg:p-10"
       >
-        <FloralBorder className="bg-[#fdfbf7] p-6 sm:p-10 relative">
-          
-          {/* Gold Corner Ribbon / Badge */}
-          <div className="absolute top-0 right-0 maroon-bg-gradient text-[#fcf6ba] text-[10px] uppercase tracking-widest font-bold px-4 py-1.5 rounded-bl-xl border-l border-b border-[#d4af37] z-20">
-            Main Ceremony
+        <div className="absolute right-0 top-0 z-10 rounded-bl-2xl border-l border-b border-[#d7b168]/70 bg-[#4b1720] px-4 py-2 text-[0.6rem] font-bold uppercase tracking-[0.22em] text-[#f8e8b7]">
+          Main ceremony
+        </div>
+
+        <div className="relative z-10 grid gap-5 md:grid-cols-3">
+          <div className="detail-card flex flex-col items-center p-6 text-center">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#4b1720] text-[#f5dca6] shadow-sm">
+              <Calendar className="h-5 w-5" />
+            </div>
+            <span className="mb-2 text-[0.62rem] font-bold uppercase tracking-[0.22em] text-[#a7701b]">Date</span>
+            <p className="font-serif-heading text-xl text-[#4b1720]">{weddingData.displayDate || 'Sunday, 15 December 2026'}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch pt-4 relative z-20">
-            
-            {/* Item 1: DATE */}
-            <div className="flex flex-col items-center text-center p-6 bg-[#faf6f0] rounded-2xl border border-[#d4af37]/40 hover:border-[#d4af37] transition shadow-sm">
-              <div className="w-12 h-12 rounded-full maroon-bg-gradient text-[#fcf6ba] flex items-center justify-center mb-4 shadow-md border border-[#d4af37]">
-                <Calendar className="w-6 h-6 text-[#d4af37]" />
-              </div>
-              <span className="text-xs uppercase tracking-wider text-[#8c6b2d] font-bold mb-1">
-                Date
-              </span>
-              <p className="font-serif-heading font-bold text-lg text-[#4a0e17]">
-                {weddingData.displayDate || "Sunday, 15 December 2026"}
-              </p>
+          <div className="detail-card flex flex-col items-center p-6 text-center">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#4b1720] text-[#f5dca6] shadow-sm">
+              <Clock className="h-5 w-5" />
             </div>
-
-            {/* Item 2: TIME */}
-            <div className="flex flex-col items-center text-center p-6 bg-[#faf6f0] rounded-2xl border border-[#d4af37]/40 hover:border-[#d4af37] transition shadow-sm">
-              <div className="w-12 h-12 rounded-full maroon-bg-gradient text-[#fcf6ba] flex items-center justify-center mb-4 shadow-md border border-[#d4af37]">
-                <Clock className="w-6 h-6 text-[#d4af37]" />
-              </div>
-              <span className="text-xs uppercase tracking-wider text-[#8c6b2d] font-bold mb-1">
-                Time &amp; Muhurtham
-              </span>
-              <p className="font-serif-heading font-bold text-lg text-[#4a0e17]">
-                {weddingData.weddingTime}
-              </p>
-              {weddingData.muhurthamTime && (
-                <span className="text-xs text-[#aa771c] font-semibold mt-1">
-                  Muhurtham: {weddingData.muhurthamTime}
-                </span>
-              )}
-            </div>
-
-            {/* Item 3: VENUE */}
-            <div className="flex flex-col items-center text-center p-6 bg-[#faf6f0] rounded-2xl border border-[#d4af37]/40 hover:border-[#d4af37] transition shadow-sm">
-              <div className="w-12 h-12 rounded-full maroon-bg-gradient text-[#fcf6ba] flex items-center justify-center mb-4 shadow-md border border-[#d4af37]">
-                <MapPin className="w-6 h-6 text-[#d4af37]" />
-              </div>
-              <span className="text-xs uppercase tracking-wider text-[#8c6b2d] font-bold mb-1">
-                Venue
-              </span>
-              <p className="font-serif-heading font-bold text-base text-[#4a0e17] line-clamp-2">
-                {weddingData.venueName}
-              </p>
-              <p className="text-xs text-[#6e532b] mt-1 line-clamp-2 font-medium">
-                {weddingData.venueAddress}
-              </p>
-            </div>
-
+            <span className="mb-2 text-[0.62rem] font-bold uppercase tracking-[0.22em] text-[#a7701b]">Time</span>
+            <p className="font-serif-heading text-xl text-[#4b1720]">{weddingData.weddingTime}</p>
+            {weddingData.muhurthamTime && (
+              <span className="mt-2 text-xs font-medium text-[#7a5a45]">Muhurtham: {weddingData.muhurthamTime}</span>
+            )}
           </div>
 
-          {/* Action Button: Add to Calendar */}
-          {weddingData.googleCalendarUrl && (
-            <div className="mt-8 text-center relative z-20">
-              <a
-                href={weddingData.googleCalendarUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#faf6f0] border border-[#d4af37] text-[#4a0e17] font-sans-clean font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#4a0e17] hover:text-[#fcf6ba] transition shadow-md group cursor-pointer"
-              >
-                <CalendarPlus className="w-4 h-4 text-[#aa771c] group-hover:text-[#d4af37]" />
-                <span>Add to Google Calendar</span>
-                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#fcf6ba]" />
-              </a>
+          <div className="detail-card flex flex-col items-center p-6 text-center">
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#4b1720] text-[#f5dca6] shadow-sm">
+              <MapPin className="h-5 w-5" />
             </div>
-          )}
+            <span className="mb-2 text-[0.62rem] font-bold uppercase tracking-[0.22em] text-[#a7701b]">Venue</span>
+            <p className="font-serif-heading text-xl text-[#4b1720]">{weddingData.venueName}</p>
+            <p className="mt-2 text-sm text-[#6a4f43]">{weddingData.venueAddress}</p>
+          </div>
+        </div>
 
-        </FloralBorder>
+        {weddingData.googleCalendarUrl && (
+          <div className="relative z-10 mt-8 text-center">
+            <a
+              href={weddingData.googleCalendarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 rounded-full border border-[#d7b168]/65 bg-[#fffaf5] px-6 py-3 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#4b1720] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#4b1720] hover:text-[#f8e8b7]"
+            >
+              <CalendarPlus className="h-4 w-4 text-[#a7701b]" />
+              <span>Add to calendar</span>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        )}
       </motion.div>
-
     </section>
   );
 }

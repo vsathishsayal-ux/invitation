@@ -8,7 +8,7 @@ export default function Countdown({ targetDateString }) {
 
   useEffect(() => {
     const calculateTime = () => {
-      const target = new Date(targetDateString || "2026-12-15T10:30:00").getTime();
+      const target = new Date(targetDateString || '2026-12-15T10:30:00').getTime();
       const now = new Date().getTime();
       const difference = target - now;
 
@@ -31,78 +31,48 @@ export default function Countdown({ targetDateString }) {
   }, [targetDateString]);
 
   return (
-    <section id="countdown" className="py-16 px-4 relative max-w-4xl mx-auto">
+    <section id="countdown" className="section-shell relative py-10 sm:py-12">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="maroon-bg-gradient rounded-3xl p-8 sm:p-12 border-2 border-[#d4af37] shadow-2xl text-center relative overflow-hidden"
+        className="relative overflow-hidden rounded-[2rem] border border-[#d7b168]/70 bg-[linear-gradient(180deg,#4b1720_0%,#2a0d13_100%)] p-8 text-center shadow-[0_24px_60px_rgba(30,7,9,0.14)] sm:p-12"
       >
-        {/* Subtle Decorative Golden Rings in background */}
-        <div className="absolute -top-16 -left-16 w-48 h-48 border border-[#d4af37]/20 rounded-full pointer-events-none" />
-        <div className="absolute -bottom-16 -right-16 w-48 h-48 border border-[#d4af37]/20 rounded-full pointer-events-none" />
+        <div className="pointer-events-none absolute -top-16 -left-10 h-40 w-40 rounded-full border border-[#f5dca6]/20" />
+        <div className="pointer-events-none absolute -bottom-16 -right-10 h-40 w-40 rounded-full border border-[#f5dca6]/20" />
 
-        {/* Section Heading */}
         <div className="relative z-10 mb-8">
-          <Heart className="w-8 h-8 text-[#d4af37] mx-auto mb-3 animate-pulse" />
-          <h2 className="font-serif-heading text-2xl sm:text-4xl text-[#fcf6ba] font-bold">
-            Counting Down To Our Special Day
+          <Heart className="mx-auto mb-3 h-8 w-8 text-[#f5dca6]" />
+          <h2 className="font-serif-heading text-3xl text-[#f8e8b7] sm:text-4xl">
+            Counting down to our special day
           </h2>
-          <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mt-3" />
+          <div className="mx-auto mt-3 h-px w-20 bg-gradient-to-r from-transparent via-[#f5dca6] to-transparent" />
         </div>
 
-        {/* Countdown Timer Display */}
         {isPast ? (
-          <div className="py-6 text-center text-[#fcf6ba] font-serif-heading text-2xl font-bold">
-            🎉 The Celebration Has Begun! 🎉
+          <div className="relative z-10 py-6 font-serif-heading text-2xl font-bold text-[#f8e8b7]">
+            🎉 The celebration has begun! 🎉
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-3 sm:gap-6 max-w-2xl mx-auto relative z-10">
-            
-            {/* Days */}
-            <div className="bg-[#fdfbf7]/10 backdrop-blur-md rounded-2xl border border-[#d4af37]/40 p-3 sm:p-5 flex flex-col items-center shadow-inner">
-              <span className="font-serif-heading text-2xl sm:text-5xl font-bold text-[#fcf6ba]">
-                {String(timeLeft.days).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#d4af37] font-semibold mt-1">
-                Days
-              </span>
-            </div>
-
-            {/* Hours */}
-            <div className="bg-[#fdfbf7]/10 backdrop-blur-md rounded-2xl border border-[#d4af37]/40 p-3 sm:p-5 flex flex-col items-center shadow-inner">
-              <span className="font-serif-heading text-2xl sm:text-5xl font-bold text-[#fcf6ba]">
-                {String(timeLeft.hours).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#d4af37] font-semibold mt-1">
-                Hours
-              </span>
-            </div>
-
-            {/* Minutes */}
-            <div className="bg-[#fdfbf7]/10 backdrop-blur-md rounded-2xl border border-[#d4af37]/40 p-3 sm:p-5 flex flex-col items-center shadow-inner">
-              <span className="font-serif-heading text-2xl sm:text-5xl font-bold text-[#fcf6ba]">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#d4af37] font-semibold mt-1">
-                Minutes
-              </span>
-            </div>
-
-            {/* Seconds */}
-            <div className="bg-[#fdfbf7]/10 backdrop-blur-md rounded-2xl border border-[#d4af37]/40 p-3 sm:p-5 flex flex-col items-center shadow-inner">
-              <span className="font-serif-heading text-2xl sm:text-5xl font-bold text-[#fcf6ba]">
-                {String(timeLeft.seconds).padStart(2, '0')}
-              </span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#d4af37] font-semibold mt-1">
-                Seconds
-              </span>
-            </div>
-
+          <div className="relative z-10 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 mx-auto">
+            {[
+              { label: 'Days', value: timeLeft.days },
+              { label: 'Hours', value: timeLeft.hours },
+              { label: 'Minutes', value: timeLeft.minutes },
+              { label: 'Seconds', value: timeLeft.seconds },
+            ].map((item) => (
+              <div key={item.label} className="rounded-2xl border border-[#f5dca6]/35 bg-[#fffaf5]/8 p-3 backdrop-blur-sm sm:p-4">
+                <div className="font-serif-heading text-3xl font-bold text-[#f8e8b7] sm:text-5xl">
+                  {String(item.value).padStart(2, '0')}
+                </div>
+                <div className="mt-2 text-[0.58rem] font-bold uppercase tracking-[0.2em] text-[#f5dca6] sm:text-[0.66rem]">
+                  {item.label}
+                </div>
+              </div>
+            ))}
           </div>
         )}
-
       </motion.div>
     </section>
   );

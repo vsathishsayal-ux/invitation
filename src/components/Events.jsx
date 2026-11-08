@@ -12,86 +12,70 @@ export default function Events({ events }) {
   if (!events || events.length === 0) return null;
 
   return (
-    <section id="events" className="py-16 px-4 relative max-w-5xl mx-auto">
-      
-      {/* Section Header */}
-      <div className="text-center mb-12">
-        <span className="text-xs uppercase tracking-[0.3em] text-[#aa771c] font-bold block mb-2">
-          Wedding Itinerary
-        </span>
-        <h2 className="font-serif-heading text-3xl sm:text-4xl text-[#4a0e17] font-bold">
-          Celebration Functions
-        </h2>
-        <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mt-3" />
+    <section id="events" className="section-shell relative py-10 sm:py-12">
+      <div className="mb-8 text-center sm:mb-10">
+        <span className="section-kicker">Wedding itinerary</span>
+        <h2 className="section-heading">Celebration functions</h2>
+        <div className="section-divider" />
       </div>
 
-      {/* Events Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 justify-items-center max-w-4xl mx-auto">
+      <div className="grid gap-6 md:grid-cols-2">
         {events.map((evt, index) => {
           const IconComponent = iconMap[evt.icon] || Sparkles;
 
           return (
             <motion.div
               key={evt.id || index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="w-full max-w-[30rem] bg-[#fdfbf7] rounded-3xl border-2 border-[#d4af37]/45 card-shadow p-6 flex flex-col justify-between hover:border-[#d4af37] transition group relative overflow-hidden"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="relative overflow-hidden rounded-[1.7rem] border border-[#d7b168]/45 bg-[#fffdfb] p-6 shadow-[0_12px_30px_rgba(35,17,19,0.08)]"
             >
-              {/* Top Accent line */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 maroon-bg-gradient z-10" />
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,#4b1720_0%,#c79a47_50%,#4b1720_100%)]" />
 
-              <div>
-                {/* Event Icon & Title Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full maroon-bg-gradient text-[#fcf6ba] flex items-center justify-center border border-[#d4af37] shadow-sm shrink-0">
-                    <IconComponent className="w-5 h-5 text-[#d4af37]" />
-                  </div>
-                  <h3 className="font-serif-heading font-bold text-xl text-[#4a0e17] group-hover:text-[#aa771c] transition">
-                    {evt.title}
-                  </h3>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#4b1720] text-[#f5dca6] shadow-sm">
+                  <IconComponent className="h-5 w-5" />
                 </div>
-
-                <p className="text-xs text-[#5c4233] leading-relaxed mb-6 font-serif-body italic">
-                  {evt.description}
-                </p>
-
-                {/* Details List */}
-                <div className="space-y-3 text-xs font-sans-clean">
-                  <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-xl border border-[#d4af37]/25">
-                    <Clock className="w-4 h-4 text-[#aa771c] shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-bold block text-[#4a0e17]">{evt.date}</span>
-                      <span className="text-gray-600">{evt.time}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-xl border border-[#d4af37]/25">
-                    <MapPin className="w-4 h-4 text-[#aa771c] shrink-0 mt-0.5" />
-                    <div>
-                      <span className="font-semibold text-[#4a0e17] block">Venue</span>
-                      <span className="text-gray-600">{evt.venue}</span>
-                    </div>
-                  </div>
-
-                  {evt.attire && (
-                    <div className="flex items-start gap-2.5 text-[#3a2517] bg-[#faf6f0] p-2.5 rounded-xl border border-[#d4af37]/25">
-                      <Shirt className="w-4 h-4 text-[#aa771c] shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-semibold text-[#4a0e17] block">Suggested Attire</span>
-                        <span className="text-[#aa771c] font-medium">{evt.attire}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <h3 className="font-serif-heading text-2xl text-[#4b1720]">{evt.title}</h3>
               </div>
 
+              <p className="mb-5 border-b border-[#d7b168]/25 pb-4 font-serif-body text-lg italic leading-relaxed text-[#5e463f]">
+                {evt.description}
+              </p>
+
+              <div className="space-y-3 text-sm">
+                <div className="detail-card flex items-start gap-3 p-3">
+                  <Clock className="mt-0.5 h-4 w-4 text-[#a7701b]" />
+                  <div>
+                    <span className="block font-bold text-[#4b1720]">{evt.date}</span>
+                    <span className="text-[#5c473d]">{evt.time}</span>
+                  </div>
+                </div>
+
+                <div className="detail-card flex items-start gap-3 p-3">
+                  <MapPin className="mt-0.5 h-4 w-4 text-[#a7701b]" />
+                  <div>
+                    <span className="block font-bold text-[#4b1720]">Venue</span>
+                    <span className="text-[#5c473d]">{evt.venue}</span>
+                  </div>
+                </div>
+
+                {evt.attire && (
+                  <div className="detail-card flex items-start gap-3 p-3">
+                    <Shirt className="mt-0.5 h-4 w-4 text-[#a7701b]" />
+                    <div>
+                      <span className="block font-bold text-[#4b1720]">Suggested attire</span>
+                      <span className="text-[#7a5a45]">{evt.attire}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
             </motion.div>
           );
         })}
       </div>
-
     </section>
   );
 }
