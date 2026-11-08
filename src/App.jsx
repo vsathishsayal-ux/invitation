@@ -12,7 +12,6 @@ import Countdown from './components/Countdown';
 import Venue from './components/Venue';
 import Events from './components/Events';
 import Blessings from './components/Blessings';
-import RSVP from './components/RSVP';
 import Footer from './components/Footer';
 import PersonalizeModal from './components/PersonalizeModal';
 import { playChimeSound, prepareAmbientWeddingMusic, startAmbientWeddingMusic, subscribeAudioState, toggleAmbientWeddingMusicMute } from './utils/audio';
@@ -119,10 +118,7 @@ export default function App() {
         {/* SECTION 7 — BLESSINGS / MESSAGE */}
         <Blessings weddingData={weddingData} />
 
-        {/* SECTION 8 — RSVP */}
-        <RSVP weddingData={weddingData} />
-
-        {/* SECTION 9 — FOOTER */}
+        {/* SECTION 8 — FOOTER */}
         <Footer weddingData={weddingData} />
 
       </div>
