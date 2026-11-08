@@ -48,9 +48,15 @@ export default function WeddingHero({ weddingData }) {
                 />
               </div>
               <div className="relative mt-4 rounded-[1.2rem] border border-[#d7b168]/40 bg-[#fffaf5] px-4 py-3 text-center">
-                <p className="font-serif-heading text-2xl tracking-[0.12em] text-[#4b1720]">
-                  {weddingData.groomName} <span className="mx-1 text-[#b77a20]">&amp;</span> {weddingData.brideName}
-                </p>
+                <div className="flex items-center justify-center gap-2">
+                  <div className="relative flex h-10 w-10 items-center justify-center sm:h-12 sm:w-12">
+                    <Heart className="absolute inset-0 h-full w-full fill-[#f5dca6] text-[#f5dca6]" />
+                    <span className="relative z-10 font-serif-heading text-[0.52rem] tracking-[0.12em] text-[#4b1720] sm:text-[0.62rem]">S&amp;B</span>
+                  </div>
+                  <p className="font-serif-heading text-xl tracking-[0.08em] text-[#4b1720] sm:text-2xl">
+                    {weddingData.groomName} <span className="mx-1 text-[#b77a20]">&amp;</span> {weddingData.brideName}
+                  </p>
+                </div>
               </div>
             </div>
             <div className="absolute -left-3 top-8 flex h-12 w-12 items-center justify-center rounded-full border border-[#d7b168]/60 bg-[#fffaf5] text-[#b77a20] shadow-md">

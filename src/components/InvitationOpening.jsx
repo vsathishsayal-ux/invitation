@@ -51,7 +51,16 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
   const groomName = weddingData?.groomFirstName || weddingData?.groomName || 'Sathish';
   const brideInit = brideName[0] || 'S';
   const groomInit = groomName[0] || 'S';
-  const monogram = `${groomInit} & ${brideInit}`;
+  const monogram = `${groomInit}${brideInit}`;
+
+  const MonogramHeart = ({ compact = false }) => (
+    <div className={`relative flex items-center justify-center ${compact ? 'h-10 w-10 sm:h-12 sm:w-12' : 'h-16 w-16 sm:h-20 sm:w-20'}`}>
+      <Heart className={`absolute inset-0 h-full w-full ${compact ? 'text-[#f5dca6]' : 'text-[#f5dca6]'} fill-[#f5dca6] drop-shadow-[0_0_12px_rgba(214,172,80,0.6)]`} />
+      <span className={`relative z-10 font-serif-heading font-bold tracking-[0.12em] text-[#4a0e17] ${compact ? 'text-[0.5rem] sm:text-[0.62rem]' : 'text-[0.62rem] sm:text-[0.78rem]'}`}>
+        S&amp;B
+      </span>
+    </div>
+  );
 
   if (isFullyOpened) return null;
 
@@ -226,10 +235,8 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
                   </svg>
 
                   {/* Top Crest Monogram Icon on Flap */}
-                  <div className="mb-6 text-center">
-                    <span className="font-serif-heading text-[#7d1927] text-xs sm:text-sm font-bold tracking-widest block">
-                      {monogram}
-                    </span>
+                  <div className="mb-6 flex items-center justify-center text-center">
+                    <MonogramHeart compact />
                   </div>
                 </div>
               </motion.div>
@@ -262,9 +269,12 @@ export default function InvitationOpening({ weddingData, onOpenComplete, onStart
                       {/* Inner Embossed Gold Monogram Ring */}
                       <div className="w-15 h-15 sm:w-18 sm:h-18 rounded-full border border-dashed border-[#fcf6ba]/70 flex flex-col items-center justify-center p-1 text-center bg-[#4a0e17]/50">
                         <Sparkles className="w-3.5 h-3.5 text-[#d4af37] animate-spin mb-0.5" style={{ animationDuration: '7s' }} />
-                        <span className="font-serif-heading text-xs sm:text-sm font-bold tracking-widest text-[#fcf6ba] drop-shadow-md block">
-                          {monogram}
-                        </span>
+                        <div className="relative flex h-8 w-8 items-center justify-center sm:h-9 sm:w-9">
+                          <Heart className="absolute inset-0 h-full w-full fill-[#f5dca6] text-[#f5dca6]" />
+                          <span className="relative z-10 font-serif-heading text-[0.42rem] font-bold tracking-[0.12em] text-[#4a0e17] sm:text-[0.5rem]">
+                            S&amp;B
+                          </span>
+                        </div>
                         <span className="text-[7px] uppercase tracking-widest text-[#d4af37] block font-sans-clean font-bold mt-0.5">
                           Open
                         </span>
