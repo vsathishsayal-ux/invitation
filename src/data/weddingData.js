@@ -18,7 +18,7 @@ export const initialWeddingData = {
   blessingsText: "Your presence and blessings mean the world to us.",
 
   brideParents: "Velmurugan & Shanmugathai",
-  groomParents: "Nagaraj & Nagavali",
+  brideParents: "Nagaraj & Nagavali",
   grandParents: "With the blessings of Family Elders & Ancestors",
 
   venueName: "Murugan Kovil",
@@ -27,9 +27,9 @@ export const initialWeddingData = {
   mapsUrl: "https://maps.google.com/?q=Sayalgudi+Tamil+Nadu",
   embedMapUrl: "https://www.google.com/maps?q=Sayalgudi%2C%20Tamil%20Nadu&output=embed",
 
-  bridePhone: "+91 98765 43210",
-  groomPhone: "+91 98765 43211",
-  rsvpWhatsapp: "+919876543210",
+  bridePhone: "",
+  groomPhone: "",
+  rsvpWhatsapp: "",
 
   googleCalendarUrl: "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sathish+%26+Brinda+Wedding&dates=20261111T033000Z/20261111T050000Z&details=We+joyfully+invite+you+to+celebrate+our+wedding+day!&location=Murugan+Kovil,+Sayalgudi",
 
