@@ -24,7 +24,7 @@ export const initialWeddingData = {
   venueName: "Murugan Kovil",
   venueAddress: "Sayalgudi",
   venueLandmark: "Murugan Kovil, Sayalgudi",
-  mapsUrl: "https://maps.google.com/?q=Sayalgudi+Tamil+Nadu",
+  mapsUrl: "https://www.google.com/maps/@9.1693553,78.4492026,30a,75y,61.74h,73.12t/data=!3m7!1e1!3m5!1shzoaH1PEOjjwSOrqvewVjw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.clients6.google.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D16.88414076689493%26panoid%3DhzoaH1PEOjjwSOrqvewVjw%26yaw%3D61.73885245000605!7i13312!8i6656?entry=ttu&g_ep=EgoyMDI2MTEwNC4wIKXMDSoASAFQAw%3D%3D",
   embedMapUrl: "https://www.google.com/maps?q=Sayalgudi%2C%20Tamil%20Nadu&output=embed",
 
   bridePhone: "",
