@@ -17,7 +17,7 @@ export const initialWeddingData = {
   invitationMessage: "With the blessings of our parents and loved ones, we joyfully invite you to be a part of our special day as we begin our journey together in love, joy, and togetherness.",
   blessingsText: "Your presence and blessings mean the world to us.",
 
-  brideParents: "Velmurugan & Shanmugathai",
+  groomParents: "Velmurugan & Shanmugathai",
   brideParents: "Nagaraj & Nagavali",
   grandParents: "With the blessings of Family Elders & Ancestors",
 
